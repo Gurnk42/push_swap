@@ -6,11 +6,13 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/06 23:03:25 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/07 00:00:14 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+#include <stdio.h>
 
 static void	ft_print_stack(t_list *lst)
 {
@@ -78,6 +80,37 @@ static void	ft_swap_both(t_env *e)
 	ft_swap_stack('b', e);
 }
 
+static void	ft_rot_stack(char stack, t_env *e)
+{
+	void	*first;
+	t_list	*lst;
+	size_t	len;
+
+	if (stack  == 'a')
+	{
+		lst = e->a;
+		len = e->len_a;
+	}
+	else
+	{
+		lst = e->b;
+		len = e->len_b;
+	}
+	if (len >= 2)
+	{
+		first = lst->content;
+		while (lst)
+		{
+			if (lst->next != NULL)
+				lst->content = lst->next->content;
+			else
+				lst->content = first;
+			lst = lst->next;
+		}
+		printf("FIRST : '%d'\n", *(int *)first);
+	}
+}
+
 static void	ft_fill_stack(int argc, char **argv, t_env *e)
 {
 	int		tmp;
@@ -105,15 +138,16 @@ int	main(int argc, char **argv)
 	ft_putchar('\n');
 
 	ft_print_stack(env.a);
-	//ft_swap_stack('a', &env);
-	ft_push_b(&env);
 
+	ft_rot_stack('a', &env);
 	ft_putstr("\n_____STACK_B____\n");
 	ft_print_stack(env.b);
 	ft_putstr("\n_____STACK_A____\n");
 	ft_print_stack(env.a);
-	ft_swap_both(&env);
 
-//	ft_sort_stacks(&env);
+	ft_swap_both(&env);
+	ft_push_b(&env);
+	ft_push_a(&env);
+	//	ft_sort_stacks(&env);
 	return (0);
 }
