@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 14:31:10 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/07 17:02:45 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/07 19:07:58 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ void	ft_rot_both(t_env *e)
 {
 	ft_rot_stack('a', e);
 	ft_rot_stack('b', e);
+}
+
+void	ft_rev_rot_both(t_env *e)
+{
+	ft_rev_rot_stack('a', e);
+	ft_rev_rot_stack('b', e);
 }
 
 static t_list	*ft_get_last(t_list *lst, size_t len)
@@ -32,13 +38,11 @@ static t_list	*ft_get_last(t_list *lst, size_t len)
 
 void	ft_rev_rot_stack(char stack, t_env *e)
 {
-	t_list	*tmp;
 	t_list	*last;
 	t_list	**lst;
 	t_list	*begin;
 	size_t	len;
 
-	tmp = NULL;
 	begin = NULL;
 	lst = NULL;
 	if (stack  == 'a')
@@ -55,12 +59,12 @@ void	ft_rev_rot_stack(char stack, t_env *e)
 	{
 		begin = *lst;
 		last = ft_get_last(*lst, len);
-		tmp = *lst;
+		*((int *)(*lst)->content) = 24;
+		*(int *)last->content = 42;
 		ft_lstadd(lst, ft_lstnew(last->content, sizeof(*last)));
-		while ((*lst)->next != NULL)
-			(*lst) = (*lst)->next;
-		free((void *)(*lst));
-		(*lst) = NULL;
+		//while ((*lst) != NULL)
+		//	(*lst) = (*lst)->next;
+		//ft_memdel((void **)(lst));
 	}
 	*lst = begin;
 }

@@ -15,7 +15,7 @@ NC = \033[0m
 
 CC = gcc
 CFLAGS = #-Wall -Wextra -Werror
-LFLAGS = -L./libft -lft 
+LFLAGS = -L./libft -lft -g
 IFLAGS = -I./inc/ -I./libft/includes/ -I./minilibx_macos_elcapitan 
 
 LIBFT = libft/libft.a

@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/07 17:23:02 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/07 19:07:58 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ static void	ft_print_stack(t_list *lst)
 	char	*ret;
 
 	ret = ft_strnew(0);
-	*ret = '\n';
 	while (lst != NULL)
 	{
-		ret = ft_strjoin_free(ft_strjoin_free(ret, ft_itoa(*((int *)(lst->content)))), ft_strdup("\n"));
+		ret = ft_strjoin_free(ft_strdup(" "), ft_strjoin_free(ft_itoa(*((int *)(lst->content))), ret));
 		lst = lst->next;
 	}
-	ret = ft_strrev(ret);
+	//ret = ft_strrev(ret);
 	ft_putstr(ret);
+	ft_strdel(&ret);
 }
 
 /*static void	ft_sort_stack(t_env *e)
@@ -58,16 +58,14 @@ static void	ft_print_stack(t_list *lst)
 static void	ft_fill_stack(int argc, char **argv, t_env *e)
 {
 	int		tmp;
-	int		i;
 
-	i = 1;
 	e->a = NULL;
 	e->b = NULL;
 	e->len_a = 0;
 	e->len_b = 0;
-	while (i < argc)
+	while (--argc > 0)
 	{
-		tmp = ft_atoi(argv[i++]);
+		tmp = ft_atoi(argv[argc]);
 		e->len_a++;
 		ft_lstadd(&(e->a), ft_lstnew((void *)(&tmp), sizeof(tmp)));
 	}
@@ -83,21 +81,28 @@ int	main(int argc, char **argv)
 	ft_putnbr(env.len_a);
 	ft_putchar('\n');
 
-	ft_print_stack(env.a);
+	/*ft_swap_stack('a', &env);
+	ft_push_b(&env);
+	ft_push_b(&env);
+	ft_push_b(&env);
 
-	ft_swap_stack('a', &env);
+	ft_rot_both(&env);*/
+
+	//ft_rev_rot_stack('a', &env);
 
 	//PRINT//
-	ft_putstr("\n_____STACK_B____\n");
-	ft_print_stack(env.b);
 	ft_putstr("\n_____STACK_A____\n");
 	ft_print_stack(env.a);
+	ft_putstr("\n________________\n");
+
+	ft_putstr("\n_____STACK_B____\n");
+	ft_print_stack(env.b);
+	ft_putstr("\n________________\n");
 	//____//
 
-	ft_rev_rot_stack('a', &env);
-	ft_swap_both(&env);
-	ft_push_b(&env);
-	ft_push_a(&env);
+	//ft_swap_both(&env);
+	//ft_push_b(&env);
+	//ft_push_a(&env);
 	//	ft_sort_stacks(&env);
 	return (0);
 }
