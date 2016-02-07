@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/07 23:08:32 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/07 23:57:44 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,27 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	return (join);
 }
 
+static void	ft_free_lst(t_env *e)
+{
+	t_list	*tmp;
+
+	tmp = NULL;
+	while (e->a != NULL)
+	{
+		tmp = e->a;
+		e->a = e->a->next;
+		ft_memdel((void **)&(tmp->content));
+		ft_memdel((void **)&(tmp));
+	}
+	while (e->b != NULL)
+	{
+		tmp = e->b;
+		e->b = e->b->next;
+		ft_memdel((void **)&(tmp->content));
+		ft_memdel((void **)&(tmp));
+	}
+}
+
 static void	ft_print_stack(t_list *lst)
 {
 	char	*ret;
@@ -42,7 +63,8 @@ static void	ft_print_stack(t_list *lst)
 	ret = ft_strnew(0);
 	while (lst != NULL)
 	{
-		ret = ft_strjoin_free(ft_strdup(" "), ft_strjoin_free(ft_itoa(*((int *)(lst->content))), ret));
+		ret = ft_strjoin_free(ft_strdup(" "),
+			ft_strjoin_free(ft_itoa(*((int *)(lst->content))), ret));
 		lst = lst->next;
 	}
 	ft_putstr(ret);
@@ -129,9 +151,10 @@ int	main(int argc, char **argv)
 
 	env.op = ft_strnew(0);
 	ft_fill_stack(argc, argv, &env);
-	ft_print_stack(env.a);
 
-	/*ft_swap_stack('a', &env);
+	/*
+	ft_print_stack(env.a);
+	ft_swap_stack('a', &env);
 	ft_push_b(&env);
 	ft_push_b(&env);
 	ft_push_b(&env);
@@ -140,18 +163,13 @@ int	main(int argc, char **argv)
 	ft_swap_stack('a', &env);
 	ft_push_a(&env);
 	ft_push_a(&env);
-	ft_push_a(&env);*/
-	ft_sort_stack(&env);
-	
-	//PRINT//
-	ft_putstr("\n_____STACK_A____\n");
-	ft_print_stack(env.a);
-	ft_putstr("\n________________\n");
+	ft_push_a(&env);
+	*/
 
-	ft_putstr("\n_____STACK_B____\n");
-	ft_print_stack(env.b);
-	ft_putstr("\n________________\n");
-	//____//
+	//ft_sort_stack(&env);
 	ft_putendl(env.op);
+	ft_strdel(&(env.op));
+	ft_free_lst(&env);
+while (1) ;
 	return (0);
 }
