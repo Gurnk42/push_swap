@@ -1,44 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/06 21:20:18 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/07 14:37:15 by ebouther         ###   ########.fr       */
+/*   Created: 2016/02/07 14:29:38 by ebouther          #+#    #+#             */
+/*   Updated: 2016/02/07 14:30:20 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "libft.h"
-
-typedef struct	s_env
+void	ft_swap_both(t_env *e)
 {
-	t_list	*a;
-	size_t	len_a;
-	t_list	*b;
-	size_t	len_b;
-}				t_env;
+	ft_swap_stack('a', e);
+	ft_swap_stack('b', e);
+}
 
-/*
-** swap.c
-*/
-void	ft_swap_both(t_env *e);
-void	ft_swap_stack(char stack, t_env *e);
+void	ft_swap_stack(char stack, t_env *e)
+{
+	void	*tmp;
+	t_list	*lst;
+	size_t	len;
 
-/*
-** rot.c
-*/
-void	ft_rot_both(t_env *e);
-void	ft_rot_stack(char stack, t_env *e);
-
-/*
-** push.c
-*/
-void	ft_push_a(t_env *e);
-void	ft_push_b(t_env *e);
-
-#endif
+	if (stack  == 'a')
+	{
+		lst = e->a;
+		len = e->len_a;
+	}
+	else
+	{
+		lst = e->b;
+		len = e->len_b;
+	}
+	if (len >= 2)
+	{
+		tmp = lst->content;
+		lst->content = lst->next->content;
+		lst->next->content = tmp;
+	}
+}

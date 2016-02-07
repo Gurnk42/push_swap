@@ -24,7 +24,10 @@ SRC_DIR = ./src/
 INC_DIR = ./inc/
 OBJ_DIR = ./obj/
 
-SRC_FILES =	push_swap.c
+SRC_FILES =	push_swap.c \
+			rot.c \
+			swap.c \
+			push.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 INC_FILES = push_swap.h
@@ -39,9 +42,6 @@ all: $(OBJ_DIR) $(LIBFT) $(NAME) auteur
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
-
-auteur:
-	$(shell $(ECHO) `whoami` > $@)
 
 norme: $(SRC)
 	norminette $(SRC) $(INC)
