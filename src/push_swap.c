@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/07 23:57:44 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/08 00:07:16 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,10 +166,10 @@ int	main(int argc, char **argv)
 	ft_push_a(&env);
 	*/
 
-	//ft_sort_stack(&env);
+	ft_sort_stack(&env);
 	ft_putendl(env.op);
 	ft_strdel(&(env.op));
 	ft_free_lst(&env);
-while (1) ;
-	return (0);
+//while (1) ;
+//	return (0);
 }
