@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 14:31:10 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/07 19:07:58 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/07 21:00:13 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,16 @@ static t_list	*ft_get_last(t_list *lst, size_t len)
 
 void	ft_rev_rot_stack(char stack, t_env *e)
 {
+	t_list *beg;
+	t_list *tmp;
+	int		test;
 	t_list	*last;
 	t_list	**lst;
-	t_list	*begin;
 	size_t	len;
 
-	begin = NULL;
+	test = 0;
 	lst = NULL;
+	beg = NULL;
 	if (stack  == 'a')
 	{
 		lst = &(e->a);
@@ -57,16 +60,19 @@ void	ft_rev_rot_stack(char stack, t_env *e)
 	}
 	if (len >= 2)
 	{
-		begin = *lst;
-		last = ft_get_last(*lst, len);
-		*((int *)(*lst)->content) = 24;
-		*(int *)last->content = 42;
-		ft_lstadd(lst, ft_lstnew(last->content, sizeof(*last)));
-		//while ((*lst) != NULL)
-		//	(*lst) = (*lst)->next;
-		//ft_memdel((void **)(lst));
-	}
-	*lst = begin;
+  		last = ft_get_last(*lst, len);
+  		ft_lstadd(lst, ft_lstnew(last->content, sizeof(*last)));
+  		beg = *lst;
+		while ((*lst)->next != NULL)
+		{
+			tmp = *lst;
+  			(*lst) = (*lst)->next;
+		}
+		free((void *)(*lst));
+		*lst = NULL;
+		tmp->next = NULL;
+ 	}
+		*lst = beg;
 }
 
 void	ft_rot_stack(char stack, t_env *e)

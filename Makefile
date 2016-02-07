@@ -1,4 +1,4 @@
-NAME := push_swap
+NAME = push_swap
 
 ECHO = echo
 RED_L = \033[1;31m
