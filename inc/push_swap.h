@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:20:18 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/07 14:37:15 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/07 14:42:40 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_swap_stack(char stack, t_env *e);
 /*
 ** rot.c
 */
+void	ft_rev_rot_stack(char stack, t_env *e);
 void	ft_rot_both(t_env *e);
 void	ft_rot_stack(char stack, t_env *e);
 

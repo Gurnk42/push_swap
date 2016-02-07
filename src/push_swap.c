@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/07 14:33:00 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/07 16:55:13 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 
 	ft_print_stack(env.a);
 
-	ft_rot_stack('a', &env);
+	ft_rev_rot_stack('a', &env);
 	ft_putstr("\n_____STACK_B____\n");
 	ft_print_stack(env.b);
 	ft_putstr("\n_____STACK_A____\n");
