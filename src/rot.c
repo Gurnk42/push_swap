@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 14:31:10 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/07 16:55:05 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/07 17:02:45 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ void	ft_rev_rot_stack(char stack, t_env *e)
 		last = ft_get_last(*lst, len);
 		tmp = *lst;
 		ft_lstadd(lst, ft_lstnew(last->content, sizeof(*last)));
-
-
 		while ((*lst)->next != NULL)
 			(*lst) = (*lst)->next;
 		free((void *)(*lst));
