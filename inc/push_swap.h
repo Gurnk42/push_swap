@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:20:18 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/07 23:15:05 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/08 16:05:52 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,11 @@ void	ft_rot_stack(char stack, t_env *e);
 */
 void	ft_push_a(t_env *e);
 void	ft_push_b(t_env *e);
+
+/*
+** push.c
+*/
+char	*ft_strjoin_free(char *s1, char *s2);
+void	ft_free_lst(t_env *e);
 
 #endif

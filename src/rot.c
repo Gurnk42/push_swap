@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 14:31:10 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/07 22:59:45 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/08 16:23:03 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,10 @@ void	ft_rev_rot_stack(char stack, t_env *e)
 {
 	t_list *beg;
 	t_list *tmp;
-	int		test;
 	t_list	*last;
 	t_list	**lst;
 	size_t	len;
 
-	test = 0;
 	lst = NULL;
 	beg = NULL;
 	if (stack  == 'a')
@@ -60,19 +58,19 @@ void	ft_rev_rot_stack(char stack, t_env *e)
 	}
 	if (len >= 2)
 	{
-  		last = ft_get_last(*lst, len);
-  		ft_lstadd(lst, ft_lstnew(last->content, sizeof(*last)));
-  		beg = *lst;
+		last = ft_get_last(*lst, len);
+		ft_lstadd(lst, ft_lstnew(last->content, sizeof(*last)));
+		beg = *lst;
 		while ((*lst)->next != NULL)
 		{
 			tmp = *lst;
-  			(*lst) = (*lst)->next;
+			(*lst) = (*lst)->next;
 		}
 		free((void *)(*lst));
 		*lst = NULL;
 		tmp->next = NULL;
- 	}
-		*lst = beg;
+	}
+	*lst = beg;
 }
 
 void	ft_rot_stack(char stack, t_env *e)
