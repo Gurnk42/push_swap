@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 13:35:34 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 13:47:12 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,12 +225,26 @@ static void	ft_sort_stack(t_env *e)
 int			main(int argc, char **argv)
 {
 	t_env	env;
+	int		i;
 
+	i = 0;
 	env.op = ft_strnew(0);
 	ft_fill_stack(argc, argv, &env);
 	ft_sort_stack(&env);
 	if (env.flag_v == 0)
-		ft_putstr(env.op);
+	{
+		if (env.flag_c == 1)
+		{
+			while (i < ft_strlen(env.op) - 2)
+				ft_putchar(env.op[i++]);
+			ft_putstr("\033[33m");
+			ft_putstr(env.op + i);
+			ft_putstr("\033[0m");
+		}
+		else
+			ft_putstr(env.op);
+		ft_putchar('\n');
+	}
 	ft_strdel(&(env.op));
 	ft_free_lst(&env);
 }
