@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 13:47:12 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 17:54:23 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,13 +130,20 @@ static int	ft_get_min_pos(t_env *e)
 static int	ft_is_sort(t_list *lst, size_t len)
 {
 	int	tmp;
+	int	i;
 
+	i = 0;
 	tmp = -2147483648;
 	while (lst != NULL)
 	{
 		if (tmp > *((int *)lst->content))
+		{
+			if (i == len - 1)
+				return (2);
 			return (0);
+		}
 		tmp = *((int *)lst->content);
+		i++;
 		lst = lst->next;
 	}
 	return (1);
@@ -147,11 +154,13 @@ static void	ft_sort_stack(t_env *e)
 	int		i;
 	t_list	*lst;
 	int		min_pos;
+	int		ret;
 
 	lst = e->a;
+	ret = -1;
 	while (e->len_a > 0 && (min_pos = ft_get_min_pos(e)) != -1)
 	{
-		if (ft_is_sort(e->a, e->len_a) == 1)
+		if ((ret = ft_is_sort(e->a, e->len_a)) == 1)
 		{
 			while (e->len_b > 0)
 			{
@@ -163,6 +172,44 @@ static void	ft_sort_stack(t_env *e)
 					ft_stacks_state(e);
 			}
 			return ;
+		}
+		else if (ret == 2)
+		{
+			ft_rev_rot_stack('a', e);
+				if (*(e->op) != '\0')
+					e->op = ft_strjoin_free(e->op, ft_strdup(" "));
+				e->op = ft_strjoin_free(e->op, ft_strdup("rra"));
+				if (e->flag_v == 1)
+					ft_stacks_state(e);
+	
+				ft_rev_rot_stack('a', e);
+				if (*(e->op) != '\0')
+					e->op = ft_strjoin_free(e->op, ft_strdup(" "));
+				e->op = ft_strjoin_free(e->op, ft_strdup("rra"));
+				if (e->flag_v == 1)
+					ft_stacks_state(e);
+
+			ft_swap_stack('a', e);
+			if (*(e->op) != '\0')
+				e->op = ft_strjoin_free(e->op, ft_strdup(" "));
+			e->op = ft_strjoin_free(e->op, ft_strdup("sa"));
+			if (e->flag_v == 1)
+				ft_stacks_state(e);
+				
+			ft_rot_stack('a', e);
+				if (*(e->op) != '\0')
+					e->op = ft_strjoin_free(e->op, ft_strdup(" "));
+				e->op = ft_strjoin_free(e->op, ft_strdup("ra"));
+				if (e->flag_v == 1)
+					ft_stacks_state(e);
+
+				ft_rot_stack('a', e);
+				if (*(e->op) != '\0')
+					e->op = ft_strjoin_free(e->op, ft_strdup(" "));
+				e->op = ft_strjoin_free(e->op, ft_strdup("ra"));
+				if (e->flag_v == 1)
+					ft_stacks_state(e);
+			break ;
 		}
 		i = 0;
 		if (min_pos == 1)
