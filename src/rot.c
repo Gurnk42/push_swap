@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 14:31:10 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 19:35:55 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 21:22:44 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void		ft_rot_stack(char stack, t_env *e)
 	t_list	*lst;
 	size_t	len;
 
+	e->nb_op++;
 	ft_rot_select_stack(&lst, &len, stack, e);
 	if (len >= 2)
 	{

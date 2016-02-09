@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 18:19:42 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 20:32:04 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 21:22:46 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void			ft_rev_rot_stack(char stack, t_env *e)
 	t_list	**lst;
 	size_t	len;
 
+	e->nb_op++;
 	lst = NULL;
 	beg = NULL;
 	lst = ft_rev_rot_select_stack(stack, &len, e);

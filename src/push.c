@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 14:32:38 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 19:10:19 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 21:23:29 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_push_a(t_env *e)
 {
 	void	*tmp;
 
+	e->nb_op++;
 	if (e->len_b >= 1)
 	{
 		e->len_a++;
@@ -52,6 +53,7 @@ void	ft_push_b(t_env *e)
 {
 	void	*tmp;
 
+	e->nb_op++;
 	if (e->len_a >= 1)
 	{
 		e->len_b++;

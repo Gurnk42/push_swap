@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 14:29:38 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 19:10:45 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 21:22:59 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_swap_stack(char stack, t_env *e)
 	t_list	*lst;
 	size_t	len;
 
+	e->nb_op++;
 	if (stack == 'a')
 	{
 		lst = e->a;

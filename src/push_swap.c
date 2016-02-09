@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 20:42:02 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 21:26:22 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	ft_check_input(char **argv, int argc, t_env *e)
 {
 	int		tmp;
 	int		i;
-	static int	n = 0;
 
 	i = 0;
 	while (argv[argc][i])
@@ -64,6 +63,7 @@ static void	ft_fill_stack(int argc, char **argv, t_env *e)
 	e->len_b = 0;
 	e->flag_v = 0;
 	e->flag_c = 0;
+	e->nb_op = 0;
 	while (--argc > 0)
 		ft_fill_stack_core(argv, argc, e);
 }
@@ -121,6 +121,7 @@ int			main(int argc, char **argv)
 			ft_putstr(env.op);
 		ft_putchar('\n');
 	}
+	ft_putnbr(env.nb_op);
 	ft_strdel(&(env.op));
 	ft_free_lst(&env);
 }
