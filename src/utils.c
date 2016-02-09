@@ -6,11 +6,13 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 16:02:56 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 19:41:07 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 22:32:32 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+#include <stdio.h>
 
 char	*ft_strjoin_free(char *s1, char *s2)
 {
@@ -84,15 +86,27 @@ int		ft_is_sort(t_list *lst, size_t len)
 {
 	int	tmp;
 	int	i;
+	int	max;
+	int	max_pos = -1;
 
 	i = 0;
 	tmp = -2147483648;
+	max = -2147483648;
 	while (lst != NULL)
 	{
+		if (*((int *)lst->content) >= max)
+		{
+			max_pos = i;
+			max = tmp;
+		}
 		if (tmp > *((int *)lst->content))
 		{
-			if (i == len - 1)
+			if (i == len - 1 && len > 3 && max_pos == i)
+			{
+				//printf("I : '%d'\n", i);
+				//ft_putstr("WOOOOORKS\n");
 				return (2);
+			}
 			return (0);
 		}
 		tmp = *((int *)lst->content);

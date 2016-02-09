@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 21:26:22 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 23:41:19 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int			main(int argc, char **argv)
 			ft_putstr(env.op);
 		ft_putchar('\n');
 	}
-	ft_putnbr(env.nb_op);
+	//ft_putnbr(env.nb_op);
 	ft_strdel(&(env.op));
 	ft_free_lst(&env);
 }
