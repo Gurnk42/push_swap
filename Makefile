@@ -30,6 +30,7 @@ SRC_FILES =	push_swap.c \
 			swap.c \
 			push.c \
 			disp.c \
+			sort.c \
 			utils.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 18:25:10 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 18:30:32 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 18:52:19 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_print_stack(t_list *lst)
 
 void	ft_stacks_state(t_env *e)
 {
-	int	i;
+	int			i;
 	static int	color = 0;
 
 	i = 0;

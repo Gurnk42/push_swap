@@ -6,11 +6,31 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 14:32:38 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/08 00:08:12 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 18:49:45 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_disp_push_a(t_env *e)
+{
+	if (*(e->op) != '\0')
+		e->op = ft_strjoin_free(e->op, ft_strdup(" "));
+	e->op = ft_strjoin_free(e->op, ft_strdup("pa"));
+	ft_push_a(e);
+	if (e->flag_v == 1)
+		ft_stacks_state(e);
+}
+
+void	ft_disp_push_b(t_env *e)
+{
+	if (*(e->op) != '\0')
+		e->op = ft_strjoin_free(e->op, ft_strdup(" "));
+	e->op = ft_strjoin_free(e->op, ft_strdup("pb"));
+	ft_push_b(e);
+	if (e->flag_v == 1)
+		ft_stacks_state(e);
+}
 
 void	ft_push_a(t_env *e)
 {

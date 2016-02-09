@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:20:18 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 18:39:16 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 18:54:43 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	ft_disp_rev_rot_a(t_env *e);
 */
 void	ft_push_a(t_env *e);
 void	ft_push_b(t_env *e);
+void	ft_disp_push_a(t_env *e);
+void	ft_disp_push_b(t_env *e);
 
 /*
 ** utils.c
@@ -67,5 +69,10 @@ int		ft_is_sort(t_list *lst, size_t len);
 void	ft_stacks_state(t_env *e);
 void	ft_print_stack(t_list *lst);
 void	ft_disp_swap_a(t_env *e);
+
+/*
+** sort.c
+*/
+void	ft_sort_stack(t_env *e);
 
 #endif
