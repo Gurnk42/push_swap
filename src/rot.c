@@ -6,12 +6,11 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 14:31:10 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 18:29:09 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 19:25:48 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void	ft_rot_both(t_env *e)
 {
@@ -40,22 +39,27 @@ void	ft_disp_rot_a(t_env *e)
 		ft_stacks_state(e);
 }
 
+static void	ft_rot_select_stack(t_list **lst, size_t *len, char stack, t_env *e)
+{
+	if (stack == 'a')
+	{
+		*lst = e->a;
+		*len = e->len_a;
+	}
+	else
+	{
+		*lst = e->b;
+		*len = e->len_b;
+	}
+}
+
 void	ft_rot_stack(char stack, t_env *e)
 {
 	void	*first;
 	t_list	*lst;
 	size_t	len;
 
-	if (stack  == 'a')
-	{
-		lst = e->a;
-		len = e->len_a;
-	}
-	else
-	{
-		lst = e->b;
-		len = e->len_b;
-	}
+	ft_rot_select_stack(&lst, &len, stack, e);
 	if (len >= 2)
 	{
 		first = lst->content;

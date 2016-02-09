@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 18:19:42 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 18:38:32 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 19:30:30 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,37 @@ void	ft_disp_rev_rot_a(t_env *e)
 		ft_stacks_state(e);
 }
 
+static t_list	**ft_rev_rot_select_stack(char stack, size_t *len, t_env *e)
+{
+	t_list	**lst;
+
+	if (stack == 'a')
+	{
+		lst = &(e->a);
+		*len = e->len_a;
+	}
+	else
+	{
+		lst = &(e->b);
+		*len = e->len_b;
+	}
+	return (lst);
+}
+
 void	ft_rev_rot_stack(char stack, t_env *e)
 {
-	t_list *beg;
-	t_list *tmp;
+	t_list	*beg;
+	t_list	*tmp;
 	t_list	*last;
 	t_list	**lst;
 	size_t	len;
 
 	lst = NULL;
 	beg = NULL;
-	if (stack  == 'a')
-	{
-		lst = &(e->a);
-		len = e->len_a;
-	}
-	else
-	{
-		lst = &(e->b);
-		len = e->len_b;
-	}
+	lst = ft_rev_rot_select_stack(stack, &len, e);
 	if (len >= 2)
 	{
-		last = ft_get_last(*lst, len);
+		last = ft_get_last(*lst, stack);
 		ft_lstadd(lst, ft_lstnew(last->content, sizeof(*last)));
 		beg = *lst;
 		while ((*lst)->next != NULL)

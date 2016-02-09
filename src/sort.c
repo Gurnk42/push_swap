@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 18:52:59 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 19:08:34 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 19:10:15 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	ft_sort_core_2(int *min_pos, t_env *e)
 	else
 		while (i < (e->len_a - *min_pos))
 		{
-			ft_disp_rev_rot_a(e);	
+			ft_disp_rev_rot_a(e);
 			i++;
 		}
 	if (ft_is_sort(e->a, e->len_a) != 1)
@@ -45,8 +45,8 @@ static int	ft_sort_core(int *min_pos, int *ret, t_env *e)
 	}
 	else if (*ret == 2)
 	{
-		ft_disp_rev_rot_a(e);	
-		ft_disp_rev_rot_a(e);	
+		ft_disp_rev_rot_a(e);
+		ft_disp_rev_rot_a(e);
 		ft_disp_swap_a(e);
 		ft_disp_rot_a(e);
 		ft_disp_rot_a(e);
@@ -56,7 +56,7 @@ static int	ft_sort_core(int *min_pos, int *ret, t_env *e)
 	return (1);
 }
 
-void	ft_sort_stack(t_env *e)
+void		ft_sort_stack(t_env *e)
 {
 	t_list	*lst;
 	int		min_pos;
