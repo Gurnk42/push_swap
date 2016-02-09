@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 16:02:56 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 18:48:30 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 19:35:06 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_free_lst(t_env *e)
 	}
 }
 
-int	ft_get_min_pos(t_env *e)
+int		ft_get_min_pos(t_env *e)
 {
 	int		min;
 	int		min_pos;
@@ -80,7 +80,7 @@ int	ft_get_min_pos(t_env *e)
 	return (-1);
 }
 
-int	ft_is_sort(t_list *lst, size_t len)
+int		ft_is_sort(t_list *lst, size_t len)
 {
 	int	tmp;
 	int	i;
@@ -101,4 +101,3 @@ int	ft_is_sort(t_list *lst, size_t len)
 	}
 	return (1);
 }
-

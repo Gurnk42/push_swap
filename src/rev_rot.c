@@ -6,19 +6,19 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 18:19:42 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 19:30:30 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 19:31:48 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_rev_rot_both(t_env *e)
+void			ft_rev_rot_both(t_env *e)
 {
 	ft_rev_rot_stack('a', e);
 	ft_rev_rot_stack('b', e);
 }
 
-void	ft_disp_rev_rot_a(t_env *e)
+void			ft_disp_rev_rot_a(t_env *e)
 {
 	ft_rev_rot_stack('a', e);
 	if (*(e->op) != '\0')
@@ -45,7 +45,7 @@ static t_list	**ft_rev_rot_select_stack(char stack, size_t *len, t_env *e)
 	return (lst);
 }
 
-void	ft_rev_rot_stack(char stack, t_env *e)
+void			ft_rev_rot_stack(char stack, t_env *e)
 {
 	t_list	*beg;
 	t_list	*tmp;
