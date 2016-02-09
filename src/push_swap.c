@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/08 16:41:58 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 12:16:31 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,12 @@ static void	ft_sort_stack(t_env *e)
 	lst = e->a;
 	while (e->len_a > 0 && (min_pos = ft_get_min_pos(e)) != -1)
 	{
+	/*	ft_putstr("a : ");
+		ft_print_stack(e->a);
+		ft_putchar('\n');
+		ft_putstr("b : ");
+		ft_print_stack(e->b);
+		ft_putchar('\n');*/
 		if (ft_is_sort(e->a, e->len_a) == 1)
 		{
 			while (e->len_b > 0)
@@ -118,7 +124,15 @@ static void	ft_sort_stack(t_env *e)
 			return ;
 		}
 		i = 0;
-		if (min_pos <= e->len_a / 2)
+		if (min_pos == 1)
+		{
+			ft_swap_stack('a', e);
+			if (*(e->op) != '\0')
+				e->op = ft_strjoin_free(e->op, ft_strdup(" "));
+			e->op = ft_strjoin_free(e->op, ft_strdup("sa"));
+			i++;
+		}
+		else if (min_pos <= e->len_a / 2)
 		{
 			while (i < min_pos)
 			{
@@ -140,10 +154,13 @@ static void	ft_sort_stack(t_env *e)
 				i++;
 			}
 		}
-		ft_push_b(e);
-		if (*(e->op) != '\0')
-			e->op = ft_strjoin_free(e->op, ft_strdup(" "));
-		e->op = ft_strjoin_free(e->op, ft_strdup("pb"));
+		if (ft_is_sort(e->a, e->len_a) != 1)
+		{
+			ft_push_b(e);
+			if (*(e->op) != '\0')
+				e->op = ft_strjoin_free(e->op, ft_strdup(" "));
+			e->op = ft_strjoin_free(e->op, ft_strdup("pb"));
+		}
 	}
 	while (e->len_b > 0)
 	{
