@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 12:39:38 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 13:35:34 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,33 @@ static void	ft_print_stack(t_list *lst)
 	ft_strdel(&ret);
 }
 
+static void	ft_stacks_state(t_env *e)
+{
+	int	i;
+	static int	color = 0;
+
+	i = 0;
+	ft_putchar('\n');
+	if (e->flag_c == 1)
+	{
+		while (i < ft_strlen(e->op) - 2)
+			ft_putchar(e->op[i++]);
+		ft_putstr("\033[3");
+		ft_putnbr((color % 6) + 1);
+		ft_putstr("m");
+		ft_putstr(e->op + i);
+		ft_putstr("\033[0m");
+		color++;
+	}
+	else
+		ft_putstr(e->op);
+	ft_putstr("\na: ");
+	ft_print_stack(e->a);
+	ft_putstr("\nb: ");
+	ft_print_stack(e->b);
+	ft_putchar('\n');
+}
+
 static void	ft_fill_stack(int argc, char **argv, t_env *e)
 {
 	int		tmp;
@@ -44,12 +71,16 @@ static void	ft_fill_stack(int argc, char **argv, t_env *e)
 	e->flag_c = 0;
 	while (--argc > 0)
 	{			
-		if (ft_strcmp(argv[argc], "-c") == 0
-			|| ft_strcmp(argv[argc], "-cv") == 0)
+		if (ft_strcmp(argv[argc], "-c") == 0)
 			e->flag_c = 1;
-		else if (ft_strcmp(argv[argc], "-v") == 0
-			|| ft_strcmp(argv[argc], "-cv") == 0)
+		else if (ft_strcmp(argv[argc], "-v") == 0)
 			e->flag_v = 1;
+		else if (ft_strcmp(argv[argc], "-cv") == 0
+			|| ft_strcmp(argv[argc], "-vc") == 0)
+		{
+			e->flag_v = 1;
+			e->flag_c = 1;
+		}
 		else
 		{
 			while (argv[argc][i])
@@ -120,13 +151,6 @@ static void	ft_sort_stack(t_env *e)
 	lst = e->a;
 	while (e->len_a > 0 && (min_pos = ft_get_min_pos(e)) != -1)
 	{
-
-		/*	ft_putstr("a : ");
-			ft_print_stack(e->a);
-			ft_putchar('\n');
-			ft_putstr("b : ");
-			ft_print_stack(e->b);
-			ft_putchar('\n');*/
 		if (ft_is_sort(e->a, e->len_a) == 1)
 		{
 			while (e->len_b > 0)
@@ -135,6 +159,8 @@ static void	ft_sort_stack(t_env *e)
 					e->op = ft_strjoin_free(e->op, ft_strdup(" "));
 				e->op = ft_strjoin_free(e->op, ft_strdup("pa"));
 				ft_push_a(e);
+				if (e->flag_v == 1)
+					ft_stacks_state(e);
 			}
 			return ;
 		}
@@ -145,6 +171,8 @@ static void	ft_sort_stack(t_env *e)
 			if (*(e->op) != '\0')
 				e->op = ft_strjoin_free(e->op, ft_strdup(" "));
 			e->op = ft_strjoin_free(e->op, ft_strdup("sa"));
+			if (e->flag_v == 1)
+				ft_stacks_state(e);
 			i++;
 		}
 		else if (min_pos <= e->len_a / 2)
@@ -155,6 +183,8 @@ static void	ft_sort_stack(t_env *e)
 				if (*(e->op) != '\0')
 					e->op = ft_strjoin_free(e->op, ft_strdup(" "));
 				e->op = ft_strjoin_free(e->op, ft_strdup("ra"));
+				if (e->flag_v == 1)
+					ft_stacks_state(e);
 				i++;
 			}
 		}
@@ -166,6 +196,8 @@ static void	ft_sort_stack(t_env *e)
 				if (*(e->op) != '\0')
 					e->op = ft_strjoin_free(e->op, ft_strdup(" "));
 				e->op = ft_strjoin_free(e->op, ft_strdup("rra"));
+				if (e->flag_v == 1)
+					ft_stacks_state(e);
 				i++;
 			}
 		}
@@ -175,6 +207,8 @@ static void	ft_sort_stack(t_env *e)
 			if (*(e->op) != '\0')
 				e->op = ft_strjoin_free(e->op, ft_strdup(" "));
 			e->op = ft_strjoin_free(e->op, ft_strdup("pb"));
+			if (e->flag_v == 1)
+				ft_stacks_state(e);
 		}
 	}
 	while (e->len_b > 0)
@@ -183,6 +217,8 @@ static void	ft_sort_stack(t_env *e)
 			e->op = ft_strjoin_free(e->op, ft_strdup(" "));
 		e->op = ft_strjoin_free(e->op, ft_strdup("pa"));
 		ft_push_a(e);
+		if (e->flag_v == 1)
+			ft_stacks_state(e);
 	}
 }
 
@@ -192,23 +228,9 @@ int			main(int argc, char **argv)
 
 	env.op = ft_strnew(0);
 	ft_fill_stack(argc, argv, &env);
-	/*
-	   ft_print_stack(env.a);
-	   ft_swap_stack('a', &env);
-	   ft_push_b(&env);
-	   ft_push_b(&env);
-	   ft_push_b(&env);
-	   ft_rot_both(&env);
-	   ft_rev_rot_both(&env);
-	   ft_swap_stack('a', &env);
-	   ft_push_a(&env);
-	   ft_push_a(&env);
-	   ft_push_a(&env);
-	   */
 	ft_sort_stack(&env);
-	ft_putendl(env.op);
+	if (env.flag_v == 0)
+		ft_putstr(env.op);
 	ft_strdel(&(env.op));
-
-	ft_print_stack(env.a);
 	ft_free_lst(&env);
 }
