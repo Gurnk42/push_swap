@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 16:02:56 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/08 16:05:52 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 18:28:05 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,3 +53,52 @@ void	ft_free_lst(t_env *e)
 		ft_memdel((void **)&(tmp));
 	}
 }
+
+int	ft_get_min_pos(t_env *e)
+{
+	int		min;
+	int		min_pos;
+	t_list	*lst;
+	int		i;
+
+	min = 2147483647;
+	min_pos = -1;
+	i = 0;
+	lst = e->a;
+	while (lst != NULL)
+	{
+		if (*((int *)lst->content) <= min)
+		{
+			min = *((int *)lst->content);
+			min_pos = i;
+		}
+		i++;
+		lst = lst->next;
+	}
+	if (min_pos != -1)
+		return (min_pos);
+	return (-1);
+}
+
+int	ft_is_sort(t_list *lst, size_t len)
+{
+	int	tmp;
+	int	i;
+
+	i = 0;
+	tmp = -2147483648;
+	while (lst != NULL)
+	{
+		if (tmp > *((int *)lst->content))
+		{
+			if (i == len - 1)
+				return (2);
+			return (0);
+		}
+		tmp = *((int *)lst->content);
+		i++;
+		lst = lst->next;
+	}
+	return (1);
+}
+

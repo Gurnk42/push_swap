@@ -6,55 +6,13 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 17:54:23 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 18:39:51 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 #include <stdio.h>
-
-static void	ft_print_stack(t_list *lst)
-{
-	char	*ret;
-
-	ret = ft_strnew(0);
-	while (lst != NULL)
-	{
-		ret = ft_strjoin_free(ft_strdup(" "),
-				ft_strjoin_free(ft_itoa(*((int *)(lst->content))), ret));
-		lst = lst->next;
-	}
-	ft_putstr(ret);
-	ft_strdel(&ret);
-}
-
-static void	ft_stacks_state(t_env *e)
-{
-	int	i;
-	static int	color = 0;
-
-	i = 0;
-	ft_putchar('\n');
-	if (e->flag_c == 1)
-	{
-		while (i < ft_strlen(e->op) - 2)
-			ft_putchar(e->op[i++]);
-		ft_putstr("\033[3");
-		ft_putnbr((color % 6) + 1);
-		ft_putstr("m");
-		ft_putstr(e->op + i);
-		ft_putstr("\033[0m");
-		color++;
-	}
-	else
-		ft_putstr(e->op);
-	ft_putstr("\na: ");
-	ft_print_stack(e->a);
-	ft_putstr("\nb: ");
-	ft_print_stack(e->b);
-	ft_putchar('\n');
-}
 
 static void	ft_fill_stack(int argc, char **argv, t_env *e)
 {
@@ -76,7 +34,7 @@ static void	ft_fill_stack(int argc, char **argv, t_env *e)
 		else if (ft_strcmp(argv[argc], "-v") == 0)
 			e->flag_v = 1;
 		else if (ft_strcmp(argv[argc], "-cv") == 0
-			|| ft_strcmp(argv[argc], "-vc") == 0)
+				|| ft_strcmp(argv[argc], "-vc") == 0)
 		{
 			e->flag_v = 1;
 			e->flag_c = 1;
@@ -99,54 +57,6 @@ static void	ft_fill_stack(int argc, char **argv, t_env *e)
 			ft_lstadd(&(e->a), ft_lstnew((void *)(&tmp), sizeof(tmp)));
 		}
 	}
-}
-
-static int	ft_get_min_pos(t_env *e)
-{
-	int		min;
-	int		min_pos;
-	t_list	*lst;
-	int		i;
-
-	min = 2147483647;
-	min_pos = -1;
-	i = 0;
-	lst = e->a;
-	while (lst != NULL)
-	{
-		if (*((int *)lst->content) <= min)
-		{
-			min = *((int *)lst->content);
-			min_pos = i;
-		}
-		i++;
-		lst = lst->next;
-	}
-	if (min_pos != -1)
-		return (min_pos);
-	return (-1);
-}
-
-static int	ft_is_sort(t_list *lst, size_t len)
-{
-	int	tmp;
-	int	i;
-
-	i = 0;
-	tmp = -2147483648;
-	while (lst != NULL)
-	{
-		if (tmp > *((int *)lst->content))
-		{
-			if (i == len - 1)
-				return (2);
-			return (0);
-		}
-		tmp = *((int *)lst->content);
-		i++;
-		lst = lst->next;
-	}
-	return (1);
 }
 
 static void	ft_sort_stack(t_env *e)
@@ -175,40 +85,11 @@ static void	ft_sort_stack(t_env *e)
 		}
 		else if (ret == 2)
 		{
-			ft_rev_rot_stack('a', e);
-				if (*(e->op) != '\0')
-					e->op = ft_strjoin_free(e->op, ft_strdup(" "));
-				e->op = ft_strjoin_free(e->op, ft_strdup("rra"));
-				if (e->flag_v == 1)
-					ft_stacks_state(e);
-	
-				ft_rev_rot_stack('a', e);
-				if (*(e->op) != '\0')
-					e->op = ft_strjoin_free(e->op, ft_strdup(" "));
-				e->op = ft_strjoin_free(e->op, ft_strdup("rra"));
-				if (e->flag_v == 1)
-					ft_stacks_state(e);
-
-			ft_swap_stack('a', e);
-			if (*(e->op) != '\0')
-				e->op = ft_strjoin_free(e->op, ft_strdup(" "));
-			e->op = ft_strjoin_free(e->op, ft_strdup("sa"));
-			if (e->flag_v == 1)
-				ft_stacks_state(e);
-				
-			ft_rot_stack('a', e);
-				if (*(e->op) != '\0')
-					e->op = ft_strjoin_free(e->op, ft_strdup(" "));
-				e->op = ft_strjoin_free(e->op, ft_strdup("ra"));
-				if (e->flag_v == 1)
-					ft_stacks_state(e);
-
-				ft_rot_stack('a', e);
-				if (*(e->op) != '\0')
-					e->op = ft_strjoin_free(e->op, ft_strdup(" "));
-				e->op = ft_strjoin_free(e->op, ft_strdup("ra"));
-				if (e->flag_v == 1)
-					ft_stacks_state(e);
+			ft_disp_rev_rot_a(e);	
+			ft_disp_rev_rot_a(e);	
+			ft_disp_swap_a(e);
+			ft_disp_rot_a(e);
+			ft_disp_rot_a(e);
 			break ;
 		}
 		i = 0;

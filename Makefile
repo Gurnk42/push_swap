@@ -26,8 +26,10 @@ OBJ_DIR = ./obj/
 
 SRC_FILES =	push_swap.c \
 			rot.c \
+			rev_rot.c \
 			swap.c \
 			push.c \
+			disp.c \
 			utils.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
