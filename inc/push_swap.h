@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:20:18 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 21:16:53 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/10 00:28:56 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct	s_env
 	int		nb_op;
 	int		flag_v;
 	int		flag_c;
+	int		flag_n;
 }				t_env;
 
 /*
@@ -70,6 +71,7 @@ int				ft_is_sort(t_list *lst, size_t len);
 void			ft_stacks_state(t_env *e);
 void			ft_print_stack(t_list *lst);
 void			ft_disp_swap_a(t_env *e);
+void			ft_color_disp(int color, t_env *e);
 
 /*
 ** sort.c

@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 23:41:19 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/10 00:33:22 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static void	ft_fill_stack_core(char **argv, int argc, t_env *e)
 		e->flag_c = 1;
 	else if (ft_strcmp(argv[argc], "-v") == 0)
 		e->flag_v = 1;
+	else if (ft_strcmp(argv[argc], "-n") == 0)
+		e->flag_n = 1;
 	else if (ft_strcmp(argv[argc], "-cv") == 0
 			|| ft_strcmp(argv[argc], "-vc") == 0)
 	{
@@ -55,14 +57,13 @@ static void	ft_fill_stack_core(char **argv, int argc, t_env *e)
 
 static void	ft_fill_stack(int argc, char **argv, t_env *e)
 {
-	int		nb[argc];
-
 	e->a = NULL;
 	e->b = NULL;
 	e->len_a = 0;
 	e->len_b = 0;
 	e->flag_v = 0;
 	e->flag_c = 0;
+	e->flag_n = 0;
 	e->nb_op = 0;
 	while (--argc > 0)
 		ft_fill_stack_core(argv, argc, e);
@@ -110,18 +111,16 @@ int			main(int argc, char **argv)
 	if (env.flag_v == 0)
 	{
 		if (env.flag_c == 1)
-		{
-			while (i < ft_strlen(env.op) - 2)
-				ft_putchar(env.op[i++]);
-			ft_putstr("\033[33m");
-			ft_putstr(env.op + i);
-			ft_putstr("\033[0m");
-		}
+			ft_color_disp(1, &env);
 		else
 			ft_putstr(env.op);
 		ft_putchar('\n');
 	}
-	//ft_putnbr(env.nb_op);
+	if (env.flag_n == 1)
+	{
+		ft_putnbr(env.nb_op);
+		ft_putchar('\n');
+	}
 	ft_strdel(&(env.op));
 	ft_free_lst(&env);
 }

@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 16:02:56 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 22:32:32 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/10 00:31:28 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,8 @@ int		ft_is_sort(t_list *lst, size_t len)
 		}
 		if (tmp > *((int *)lst->content))
 		{
-			if (i == len - 1 && len > 3 && max_pos == i)
-			{
-				//printf("I : '%d'\n", i);
-				//ft_putstr("WOOOOORKS\n");
+			if (i == (int)(len - 1) && len > 3 && max_pos == i)
 				return (2);
-			}
 			return (0);
 		}
 		tmp = *((int *)lst->content);
