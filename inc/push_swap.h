@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:20:18 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/08 16:05:52 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 12:19:38 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct	s_env
 	t_list	*b;
 	size_t	len_b;
 	char	*op;
+	int		flag_v;
+	int		flag_c;
 }				t_env;
 
 /*

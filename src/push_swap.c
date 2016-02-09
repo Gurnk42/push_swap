@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 21:19:51 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 12:16:31 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/09 12:39:38 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,33 @@ static void	ft_fill_stack(int argc, char **argv, t_env *e)
 	e->b = NULL;
 	e->len_a = 0;
 	e->len_b = 0;
+	e->flag_v = 0;
+	e->flag_c = 0;
 	while (--argc > 0)
-	{
-		while (argv[argc][i])
+	{			
+		if (ft_strcmp(argv[argc], "-c") == 0
+			|| ft_strcmp(argv[argc], "-cv") == 0)
+			e->flag_c = 1;
+		else if (ft_strcmp(argv[argc], "-v") == 0
+			|| ft_strcmp(argv[argc], "-cv") == 0)
+			e->flag_v = 1;
+		else
 		{
-			if (ft_isdigit(argv[argc][i++]) == 0)
+			while (argv[argc][i])
 			{
-				ft_putstr("Error\n");
-				exit(-1);
+				if (ft_isdigit(argv[argc][i]) == 0
+						&& argv[argc][i] != '-'
+						&& argv[argc][i] != '+')
+				{
+					ft_putstr("Error\n");
+					exit(-1);
+				}
+				i++;
 			}
+			tmp = ft_atoi(argv[argc]);
+			e->len_a++;
+			ft_lstadd(&(e->a), ft_lstnew((void *)(&tmp), sizeof(tmp)));
 		}
-		tmp = ft_atoi(argv[argc]);
-		e->len_a++;
-		ft_lstadd(&(e->a), ft_lstnew((void *)(&tmp), sizeof(tmp)));
 	}
 }
 
@@ -106,12 +120,13 @@ static void	ft_sort_stack(t_env *e)
 	lst = e->a;
 	while (e->len_a > 0 && (min_pos = ft_get_min_pos(e)) != -1)
 	{
-	/*	ft_putstr("a : ");
-		ft_print_stack(e->a);
-		ft_putchar('\n');
-		ft_putstr("b : ");
-		ft_print_stack(e->b);
-		ft_putchar('\n');*/
+
+		/*	ft_putstr("a : ");
+			ft_print_stack(e->a);
+			ft_putchar('\n');
+			ft_putstr("b : ");
+			ft_print_stack(e->b);
+			ft_putchar('\n');*/
 		if (ft_is_sort(e->a, e->len_a) == 1)
 		{
 			while (e->len_b > 0)
