@@ -14,8 +14,8 @@ CYAN_L = \033[1;36m
 NC = \033[0m
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-LFLAGS = -L./libft -lft -g
+CFLAGS = -Wall -Wextra -Werror -g
+LFLAGS = -L./libft -lft
 IFLAGS = -I./inc/ -I./libft/includes/ -I./minilibx_macos_elcapitan 
 
 LIBFT = libft/libft.a

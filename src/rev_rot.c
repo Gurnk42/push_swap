@@ -6,7 +6,7 @@
 /*   By: ebouther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 18:19:42 by ebouther          #+#    #+#             */
-/*   Updated: 2016/02/09 21:22:46 by ebouther         ###   ########.fr       */
+/*   Updated: 2016/02/10 19:18:18 by ebouther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void			ft_rev_rot_stack(char stack, t_env *e)
 			tmp = *lst;
 			(*lst) = (*lst)->next;
 		}
-		free((void *)(*lst));
-		*lst = NULL;
+		ft_memdel((void **)(&((*lst)->content)));
+		ft_memdel((void **)(lst));
 		tmp->next = NULL;
 	}
 	*lst = beg;
